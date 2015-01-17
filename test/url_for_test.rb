@@ -1,16 +1,16 @@
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 
-require 'test/unit'
+require 'minitest/autorun'
 require 'action_controller'
 
 require "ssl_requirement"
 
-class UrlRewriterTest < Test::Unit::TestCase
+class UrlRewriterTest < Minitest::Test
   def setup
     @routes = ActionDispatch::Routing::RouteSet.new
     @routes.default_url_options[:host] = 'test.host'
     @routes.draw do
-      match ':controller(/:action(/:id(.:format)))'
+      get ':controller(/:action(/:id(.:format)))'
     end
     @ssl_host_override = "www.example.com:80443"
     @non_ssl_host_override = "www.example.com:8080"

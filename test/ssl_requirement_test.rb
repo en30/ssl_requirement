@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'action_controller'
 
 $:.unshift(File.dirname(__FILE__) + '/../lib')
@@ -9,7 +9,7 @@ require "ssl_requirement"
 
 ROUTES = ActionDispatch::Routing::RouteSet.new
 ROUTES.draw do
-  match ':controller(/:action(/:id(.:format)))'
+  get ':controller(/:action(/:id(.:format)))'
 end
 ROUTES.finalize!
 
